@@ -1,6 +1,7 @@
 ---
 - hosts: k8s-cluster
   roles:
+    - { role: tinc, tags: tinc }
     - { role: adduser, tags: adduser }
     - { role: download, tags: download }
     - { role: kubernetes/preinstall, tags: preinstall }
@@ -8,7 +9,6 @@
     - { role: docker, tags: docker, when: ansible_os_family != "CoreOS" }
     - { role: kubernetes/node, tags: node }
     - { role: network_plugin, tags: network }
-    - { role: dnsmasq, tags: dnsmasq }
 
 - hosts: kube-master
   roles:

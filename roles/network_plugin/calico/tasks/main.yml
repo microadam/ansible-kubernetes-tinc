@@ -126,3 +126,4 @@
      ETCD_AUTHORITY: "127.0.0.1:2379"
   with_items: peers
   when: peer_with_router|default(false) and inventory_hostname in groups['kube-node']
+

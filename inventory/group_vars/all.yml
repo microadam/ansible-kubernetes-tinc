@@ -5,6 +5,16 @@ bin_dir: /usr/local/bin
 # Note: ensure that you've enough disk space (about 1G)
 local_release_dir: "/tmp/releases"
 
+# Tinc setup
+
+netname: k8s
+physical_ip: "{{ ansible_default_ipv4.address }}"
+
+vpn_interface: k8s0
+
+vpn_netmask: 255.255.255.0
+vpn_subnet_cidr_netmask: 32
+
 # Uncomment this line for CoreOS only.
 # Directory where python binary is installed
 # ansible_python_interpreter: "/opt/bin/python"
@@ -18,12 +28,9 @@ kube_log_level: 2
 
 # Users to create for basic auth in Kubernetes API via HTTP
 kube_users:
-  kube:
+  admin:
     pass: changeme
     role: admin
-#   root:
-#     pass: changeme
-#     role: admin
 
 # Kubernetes cluster name, also will be used as DNS domain
 cluster_name: cluster.local
@@ -51,7 +58,7 @@ cluster_name: cluster.local
 # access_ip: 1.1.1.1
 
 # Choose network plugin (calico, weave or flannel)
-kube_network_plugin: flannel
+kube_network_plugin: calico
 
 # Kubernetes internal network for services, unused block of space.
 kube_service_addresses: 10.233.0.0/18
@@ -97,7 +104,7 @@ upstream_dns_servers:
 dns_setup: true
 dns_domain: "{{ cluster_name }}"
 #
-# # Ip address of the kubernetes dns service
+# # Ip address of the kubernetes skydns service
 dns_server: "{{ kube_service_addresses|ipaddr('net')|ipaddr(2)|ipaddr('address') }}"
 
 # For multi masters architecture:

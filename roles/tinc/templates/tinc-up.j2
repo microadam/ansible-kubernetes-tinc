@@ -1,0 +1,2 @@
+#!/bin/sh
+ifconfig {{ vpn_interface }} {{ hostvars[inventory_hostname]['access_ip'] | default(hostvars[inventory_hostname]['ip'] | default( ansible_default_ipv4.address)) }} netmask {{ vpn_netmask }}

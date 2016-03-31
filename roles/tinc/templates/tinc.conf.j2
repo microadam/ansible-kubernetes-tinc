@@ -1,0 +1,8 @@
+Name = {{ inventory_hostname | regex_replace('[^a-zA-Z0-9_]+', '_') }}
+AddressFamily = ipv4
+Interface = {{ vpn_interface }}
+{% for host in play_hosts %}
+{% if inventory_hostname != hostvars[host]['inventory_hostname'] %}
+ConnectTo = {{ hostvars[host]['inventory_hostname'] | regex_replace('[^a-zA-Z0-9_]+', '_') }}
+{% endif %}
+{% endfor %}

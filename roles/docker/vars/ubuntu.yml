@@ -3,7 +3,7 @@ docker_kernel_min_version: '3.2'
 
 # https://apt.dockerproject.org/repo/dists/ubuntu-trusty/main/filelist
 docker_versioned_pkg:
-  latest: docker-engine
+  latest: docker.io
   1.9: docker-engine=1.9.1-0~wily
   1.10: docker-engine=1.10.3-0~wily
 

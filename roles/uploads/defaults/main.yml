@@ -2,9 +2,9 @@
 local_release_dir: /tmp
 
 # Versions
-kube_version: v1.2.0
+kube_version: v1.2.1
 etcd_version: v2.2.5
-calico_version: v0.17.0
+calico_version: v0.18.0
 calico_cni_version: v1.1.0
 weave_version: v1.4.4
 

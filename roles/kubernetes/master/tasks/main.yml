@@ -82,12 +82,6 @@
     src: manifests/kube-scheduler.manifest.j2
     dest: "{{ kube_manifest_dir }}/kube-scheduler.manifest"
 
-- name: restart kubelet
-  service:
-    name: kubelet
-    state: restarted
-  changed_when: false
-
 - pause: prompt="Please wait until the cluster has started and the 'controller-manager' is running (only need to wait on first run)"
 
  # Setup DNS
@@ -161,20 +155,14 @@
   changed_when: False
   when: kube_network_plugin == 'calico' and inventory_hostname == groups['kube-master'][0] and calico_system_ns_enabled.rc !=0
 
-- name: Write Calico Policy Agent RC file
-  template: src=calico-policy-agent-rc.yaml.j2 dest=/etc/kubernetes/calico-policy-agent-rc.yaml
-  when: kube_network_plugin == 'calico' and inventory_hostname == groups['kube-master'][0]
+- name: Write Calico Policy Agent manifest
+  template:
+    src: manifests/calico-policy-agent.manifest.j2
+    dest: "{{ kube_manifest_dir }}/calico-policy-agent.manifest"
+  when: kube_network_plugin == 'calico'
 
-- name: Check that the calico-policy-agent RC exists
-  shell: "{{ bin_dir }}/kubectl get rc calico-policy-agent --namespace=calico-system"
-  register: calico_policy_agent_exists
-  failed_when: false
+- name: restart kubelet
+  service:
+    name: kubelet
+    state: restarted
   changed_when: false
-
-- name: Create calico-policy-agent RC
-  shell: "{{ bin_dir }}/kubectl create -f /etc/kubernetes/calico-policy-agent-rc.yaml"
-  when: kube_network_plugin == 'calico' and inventory_hostname == groups['kube-master'][0] and calico_policy_agent_exists.rc != 0
-
-- name: Update calico-policy-agent RC
-  shell: "{{ bin_dir }}/kubectl update -f /etc/kubernetes/calico-policy-agent-rc.yaml"
-  when: kube_network_plugin == 'calico' and inventory_hostname == groups['kube-master'][0] and calico_policy_agent_exists.rc == 0

@@ -2,16 +2,16 @@
 local_release_dir: /tmp
 
 # Versions
-kube_version: v1.2.0
+kube_version: v1.2.3
 etcd_version: v2.2.5
-calico_version: v0.18.0
-calico_cni_version: v1.1.0
+calico_version: v0.19.0
+calico_cni_version: v1.3.0
 weave_version: v1.4.4
 
 # Download URL's
-kubelet_download_url: "https://storage.googleapis.com/kubespray/{{kube_version}}_kubernetes-kubelet"
-apiserver_download_url: "https://storage.googleapis.com/kubespray/{{kube_version}}_kubernetes-apiserver"
-kubectl_download_url: "https://storage.googleapis.com/kubespray/{{kube_version}}_kubernetes-kubectl"
+kubelet_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/amd64/kubelet"
+apiserver_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/amd64/kube-apiserver"
+kubectl_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/amd64/kubectl"
 
 etcd_download_url: "https://storage.googleapis.com/kubespray/{{etcd_version}}_etcd"
 calico_download_url: "https://github.com/projectcalico/calico-containers/releases/download/{{calico_version}}/calicoctl"
@@ -20,14 +20,14 @@ calico_cni_ipam_download_url: "https://github.com/projectcalico/calico-cni/relea
 weave_download_url: "https://storage.googleapis.com/kubespray/{{weave_version}}_weave"
 
 # Checksums
-calico_checksum: "694d2e0d0079980d75bc807fcb6626b18e5994638aa62743d45b906e742a0eed"
-calico_cni_checksum: "7ba2cc5a8cc344608421bb3fdf609de906d3bcad20da3539acb729e0345cdfcf"
-calico_cni_ipam_checksum: "d7a5ab41437ad5d54f3367f016dc00316b1eeff8d8a26364e7268c6276c71996"
+calico_checksum: "6db00c94619e82d878d348c4e1791f8d2f0db59075f6c8e430fefae297c54d96"
+calico_cni_checksum: "2f65616cfca7d7b8967a62f179508d30278bcc72cef9d122ce4a5f6689fc6577"
+calico_cni_ipam_checksum: "cc362ea55c41b9dfda1e24f4c76da0a4101fa3a6f645fbce2d91d51401f6ba67"
 weave_checksum: "152942c330f87ab475d87d9311b91674b90f25ea685bd4e04e0495d5fe09a957"
 etcd_checksum: "aa6037406257d2a1bc48ffa769afe7a4f8a04cc1ffcd36ef84f9ee8bc4eca756"
-kubectl_checksum: "0fd51875a4783fb106f769bdbc81012066b4a2785ba88b0280870a25cab76296"
-kubelet_checksum: "a1da4b8d0965f66b7243d22f2b307227ec24bbd7ce8522cd3ce4ec1206c3a09e"
-kube_apiserver_checksum: "fe50e4014a96897a708b3c847550b4e510a390585209c2b11c02a32123570d43"
+kubectl_checksum: "394853edd409a721bcafe4f1360009ef9f845050719fe7d6fc7176f45cc92a8c"
+kubelet_checksum: "633bb41c51c5c0df0645dd60ba82b12eba39d009eb87bae9227de7d9a89c0797"
+kube_apiserver_checksum: "ebaeeeb72cb29b358337b330617a96355ff2d08a5a523fc1a81beba36cc9d6f9"
 
 downloads:
   - name: calico

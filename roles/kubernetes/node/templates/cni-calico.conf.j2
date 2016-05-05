@@ -2,11 +2,14 @@
   "name": "calico-k8s-network",
   "type": "calico",
   "etcd_authority": "127.0.0.1:2379",
-  "log_level": "info",
+  "log_level": "debug",
   "ipam": {
     "type": "calico-ipam"
   },
   "policy": {
-    "type": "default-deny-inbound"
+    "type": "k8s",
+    "k8s_api_root": "https://{{ hostvars[groups['kube-master'][0]]['access_ip'] | default(hostvars[groups['kube-master'][0]]['ip'] | default(hostvars[groups['kube-master'][0]]['ansible_default_ipv4']['address'])) }}/api/v1/",
+    "k8s_client_certificate": "{{ kube_cert_dir }}/node.pem",
+    "k8s_client_key": "{{ kube_cert_dir }}/node-key.pem"
   }
 }

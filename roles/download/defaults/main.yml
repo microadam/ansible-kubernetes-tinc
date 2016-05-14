@@ -13,11 +13,11 @@ kubelet_download_url: "https://storage.googleapis.com/kubernetes-release/release
 apiserver_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/amd64/kube-apiserver"
 kubectl_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/amd64/kubectl"
 
-etcd_download_url: "https://storage.googleapis.com/kubespray/{{etcd_version}}_etcd"
+etcd_download_url: "https://storage.googleapis.com/kargo/{{etcd_version}}_etcd"
 calico_download_url: "https://github.com/projectcalico/calico-containers/releases/download/{{calico_version}}/calicoctl"
 calico_cni_download_url: "https://github.com/projectcalico/calico-cni/releases/download/{{calico_cni_version}}/calico"
 calico_cni_ipam_download_url: "https://github.com/projectcalico/calico-cni/releases/download/{{calico_cni_version}}/calico-ipam"
-weave_download_url: "https://storage.googleapis.com/kubespray/{{weave_version}}_weave"
+weave_download_url: "https://storage.googleapis.com/kargo/{{weave_version}}_weave"
 
 # Checksums
 calico_checksum: "6db00c94619e82d878d348c4e1791f8d2f0db59075f6c8e430fefae297c54d96"
